@@ -8,7 +8,7 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    name: Run tests
+    name: Run linter
 
     steps:
       - uses: actions/checkout@v5
@@ -47,4 +47,9 @@ jobs:
         with:
           name: pytest-report
           path: reports/pytest-report.xml
-
+      - name: Generate summary
+        if: always()
+        run: |
+          echo "## Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- Event: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Commit: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
