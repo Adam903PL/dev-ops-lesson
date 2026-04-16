@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Build image
-        run: docker build -t gha-gr1:${{ github.sha }}
+        run: docker build -t gha-gr1:${{ github.sha }} .
 
       - name: Run container
         run: docker run -d --name gha-gr1-app -p 8000:8000 gha-gr1:${{ github.sha }}
