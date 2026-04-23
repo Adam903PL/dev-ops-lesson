@@ -33,7 +33,7 @@ jobs:
       - name: Add summary to GITHUB_STEP_SUMMARY
         if: always()
         run: |
-          if["${{steps.smoke.outcome}}" = "success"] then
+          if["${{steps.smoke.outcome}}" = "success"]; then
             RESULT="yes"
           else"
             RESULT="no"
@@ -43,7 +43,7 @@ jobs:
           echo ""
           echo "- Event: ${{github.event_name}}"
           echo "- Ref: ${{github.ref}}"
-          echo "- Smoke test passwd: ${RESULT}"
+          echo "- Smoke test passed: ${RESULT}"
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Stop compose stack
         if: always()
